@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # nvm
 .nvmrc
+
+# package-lock.json
+package-lock.json
