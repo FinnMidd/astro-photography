@@ -1,11 +1,336 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import ImageCard from "../components/ImageCard.astro";
+import { ChevronDown, Instagram, Twitter, Mail } from "lucide-astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const images = [
+	{
+		src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
+		alt: "Mountain Landscape",
+		title: "Alpine Silence",
+		category: "Landscape",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop",
+		alt: "Silver Architecture",
+		title: "Geometric Flow",
+		category: "Architecture",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1544269437-11b780a9d7d5?q=80&w=987&auto=format&fit=crop",
+		alt: "Staircase",
+		title: "Infinite Ascent",
+		category: "Architecture",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop",
+		alt: "Forest Mist",
+		title: "Whispering Trees",
+		category: "Nature",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2232&auto=format&fit=crop",
+		alt: "Field",
+		title: "Golden Hour",
+		category: "Landscape",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
+		alt: "Studio Portrait",
+		title: "Shadow & Soul",
+		category: "Portrait",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
+		alt: "Coastal Sunrise",
+		title: "Azure Horizon",
+		category: "Seascape",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964&auto=format&fit=crop",
+		alt: "Camera Detail",
+		title: "The Tool",
+		category: "Detail",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1605462858193-12b5e9c860f4?q=80&w=987&auto=format&fit=crop",
+		alt: "Mountain Peak",
+		title: "Summit Range",
+		category: "Landscape",
+	},
+];
 ---
 
 <Layout>
-	<Welcome />
+	<Navbar />
+
+	<main>
+		<!-- Hero Section -->
+		<section
+			class="h-screen flex flex-col items-center justify-center relative px-8 overflow-hidden"
+		>
+			<div
+				id="hero-bg"
+				class="absolute inset-0 z-0 scale-110 opacity-30 blur-2xl transition-transform duration-[3000ms]"
+			>
+				<img
+					src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop"
+					class="w-full h-full object-cover"
+					alt="Hero background"
+				/>
+			</div>
+
+			<div class="relative z-10 text-center max-w-4xl">
+				<h2
+					id="hero-sub"
+					class="uppercase tracking-[0.3em] text-xs mb-6 text-secondary opacity-0 translate-y-4"
+				>
+					Capturing Moments in Between
+				</h2>
+				<h1
+					id="hero-title"
+					class="font-serif text-6xl md:text-9xl mb-8 leading-tight opacity-0 translate-y-8"
+				>
+					Ethereal <br /> Aesthetics
+				</h1>
+				<div id="hero-btn" class="opacity-0 translate-y-4">
+					<a href="#gallery" class="btn-minimal">View Portfolio</a>
+				</div>
+			</div>
+
+			<a
+				href="#gallery"
+				class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50 hover:opacity-100 transition-opacity"
+			>
+				<ChevronDown class="w-8 h-8" />
+			</a>
+		</section>
+
+		<!-- Gallery Section -->
+		<section id="gallery" class="py-32 px-8 md:px-16 bg-white">
+			<div class="max-w-7xl mx-auto">
+				<div
+					class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
+				>
+					<div class="max-w-xl">
+						<h2 class="font-serif text-4xl md:text-5xl mb-6">
+							Curated Visions
+						</h2>
+						<p class="text-secondary leading-relaxed">
+							A collection of moments captured across the globe,
+							focusing on the interplay of light, shadow, and the
+							quiet beauty of the natural world.
+						</p>
+					</div>
+					<div class="flex gap-4">
+						<span
+							class="text-xs uppercase tracking-widest text-secondary border-b border-primary pb-1"
+							>All</span
+						>
+						<span
+							class="text-xs uppercase tracking-widest text-secondary/30 hover:text-secondary cursor-pointer pb-1 transition-colors"
+							>Landscape</span
+						>
+						<span
+							class="text-xs uppercase tracking-widest text-secondary/30 hover:text-secondary cursor-pointer pb-1 transition-colors"
+							>Architecture</span
+						>
+						<span
+							class="text-xs uppercase tracking-widest text-secondary/30 hover:text-secondary cursor-pointer pb-1 transition-colors"
+							>Nature</span
+						>
+					</div>
+				</div>
+
+				<div
+					id="grid-container"
+					class="columns-1 md:columns-2 lg:columns-3 gap-6 md:gap-8"
+				>
+					{images.map((img) => <ImageCard {...img} />)}
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="py-32 px-8 md:px-16 bg-bg">
+			<div
+				class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center"
+			>
+				<div class="relative group">
+					<div
+						class="absolute -inset-4 border border-accent -z-10 group-hover:inset-0 transition-all duration-700"
+					>
+					</div>
+					<img
+						src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1974&auto=format&fit=crop"
+						alt="Photographer"
+						class="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+					/>
+				</div>
+				<div>
+					<h2 class="font-serif text-4xl md:text-5xl mb-8">
+						The Eye Behind <br /> The Lens
+					</h2>
+					<p
+						class="text-lg text-secondary leading-relaxed mb-6 italic"
+					>
+						"Photography is the only language that can be understood
+						anywhere in the world."
+					</p>
+					<p class="text-secondary leading-relaxed mb-8">
+						Based in the rugged landscapes of the Pacific Northwest,
+						I specialize in fine art photography that explores the
+						boundary between reality and ethereal dreamscapes. My
+						work is an invitation to pause, breathe, and witness the
+						extraordinary in the seemingly ordinary.
+					</p>
+					<a
+						href="mailto:hello@etherealens.com"
+						class="inline-flex items-center gap-2 group"
+					>
+						<span
+							class="text-sm uppercase tracking-widest border-b border-primary pb-1 group-hover:pr-4 transition-all duration-300"
+							>Get in touch</span
+						>
+						<Mail
+							class="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300"
+						/>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact/Footer -->
+		<footer id="contact" class="bg-primary text-bg py-24 px-8 md:px-16">
+			<div
+				class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16"
+			>
+				<div class="max-w-md">
+					<h2 class="font-serif text-5xl mb-8">
+						Let's Create <br /> Something Beautiful
+					</h2>
+					<p class="text-bg/60 leading-relaxed mb-8">
+						Available for assignments worldwide and fine art print
+						inquiries.
+					</p>
+					<div class="flex gap-6">
+						<a href="#" class="hover:text-accent transition-colors"
+							><Instagram class="w-6 h-6" /></a
+						>
+						<a href="#" class="hover:text-accent transition-colors"
+							><Twitter class="w-6 h-6" /></a
+						>
+						<a href="#" class="hover:text-accent transition-colors"
+							><Mail class="w-6 h-6" /></a
+						>
+					</div>
+				</div>
+				<div
+					class="w-full md:w-auto grid grid-cols-2 md:grid-cols-1 gap-8 text-right"
+				>
+					<div>
+						<p
+							class="text-xs uppercase tracking-widest text-bg/40 mb-2"
+						>
+							Location
+						</p>
+						<p>Portland, Oregon</p>
+					</div>
+					<div>
+						<p
+							class="text-xs uppercase tracking-widest text-bg/40 mb-2"
+						>
+							Email
+						</p>
+						<p>hello@etherealens.com</p>
+					</div>
+					<div>
+						<p
+							class="text-xs uppercase tracking-widest text-bg/40 mb-2"
+						>
+							Follow
+						</p>
+						<p>@ethereal.lens</p>
+					</div>
+				</div>
+			</div>
+			<div
+				class="max-w-7xl mx-auto mt-24 pt-8 border-t border-bg/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs tracking-widest text-bg/40 uppercase"
+			>
+				<p>© 2026 Ethereal Lens Photography. All Rights Reserved.</p>
+				<div class="flex gap-8">
+					<a href="#" class="hover:text-bg transition-colors"
+						>Privacy Policy</a
+					>
+					<a href="#" class="hover:text-bg transition-colors"
+						>Terms of Use</a
+					>
+				</div>
+			</div>
+		</footer>
+	</main>
+
+	<!-- GSAP Animations Scripts -->
+	<script>
+		import { gsap } from "gsap";
+		import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+		gsap.registerPlugin(ScrollTrigger);
+
+		// Initial Load Animation
+		window.addEventListener("load", () => {
+			const tl = gsap.timeline();
+
+			tl.to("#hero-bg", {
+				scale: 1,
+				opacity: 0.15,
+				duration: 2.5,
+				ease: "power2.out",
+			})
+				.to(
+					"#hero-sub",
+					{ opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+					"-=1.5",
+				)
+				.to(
+					"#hero-title",
+					{ opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
+					"-=0.8",
+				)
+				.to(
+					"#hero-btn",
+					{ opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+					"-=0.6",
+				);
+		});
+
+		// Scroll Animations
+		gsap.utils.toArray(".reveal-image").forEach((img, i) => {
+			gsap.from(img, {
+				scrollTrigger: {
+					trigger: img,
+					start: "top bottom-=100",
+					toggleActions: "play none none none",
+				},
+				opacity: 0,
+				y: 50,
+				duration: 0.8,
+				delay: (i % 3) * 0.1,
+				ease: "power3.out",
+			});
+		});
+
+		// Parallax effect for the about image
+		gsap.to("#about img", {
+			scrollTrigger: {
+				trigger: "#about",
+				start: "top bottom",
+				end: "bottom top",
+				scrub: true,
+			},
+			y: -50,
+			ease: "none",
+		});
+	</script>
 </Layout>

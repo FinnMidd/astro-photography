@@ -1,6 +1,7 @@
 ---
-import "../styles/style.css"
+import "../styles/style.css";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -8,9 +9,22 @@ import "../styles/style.css"
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<title>Minimalist Photography | Portfolio</title>
+		<meta
+			name="description"
+			content="A modern, sleek photography portfolio showcasing minimalistic and clean visual stories."
+		/>
 	</head>
-	<body>
+	<body class="selection:bg-primary selection:text-bg">
 		<slot />
 	</body>
 </html>

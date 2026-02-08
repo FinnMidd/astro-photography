@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #1A1A1A;
+    --color-secondary: #666666;
+    --color-accent: #E5E5E5;
+    --color-bg: #FCFCFC;
+
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-bg);
+        color: var(--color-primary);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: 300;
+        letter-spacing: -0.02em;
+    }
+}
+
+@layer components {
+    .nav-link {
+        @apply relative text-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300;
+    }
+
+    .nav-link::after {
+        @apply content-[''] absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300;
+    }
+
+    .nav-link:hover::after {
+        @apply w-full;
+    }
+
+    .btn-minimal {
+        @apply px-6 py-3 border border-primary text-sm uppercase tracking-widest hover:bg-primary hover:text-bg transition-all duration-500;
+    }
+}
+
+.reveal-image {
+    overflow: hidden;
+}
+
+.reveal-image img {
+    transform: scale(1.1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-image:hover img {
+    transform: scale(1);
+}

@@ -1,0 +1,35 @@
+---
+interface Props {
+    src: string;
+    alt: string;
+    title: string;
+    category: string;
+    span?: string;
+}
+
+const { src, alt, title, category, span = "col-span-1" } = Astro.props;
+---
+
+<div
+    class={`reveal-image relative group overflow-hidden bg-accent break-inside-avoid mb-6 md:mb-8`}
+>
+    <img
+        src={src}
+        alt={alt}
+        class="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+    />
+    <div
+        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 text-white"
+    >
+        <p
+            class="text-xs uppercase tracking-widest mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+        >
+            {category}
+        </p>
+        <h3
+            class="text-2xl font-serif translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75"
+        >
+            {title}
+        </h3>
+    </div>
+</div>
