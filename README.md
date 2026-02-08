@@ -1,46 +1,45 @@
-# Astro Starter Kit: Basics
+# Modern Photography Portfolio Template
 
-```sh
-npm create astro@latest -- --template basics
-```
+A high-performance, aesthetically pleasing photography portfolio template built with **Astro**, **Tailwind CSS**, and **GSAP**. This project is designed as a sophisticated playground for web development practice, showcasing the synergy between high-end visual content and modern frontend engineering.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠️ Tech Stack
 
-## 🚀 Project Structure
+- **Framework**: [Astro](https://astro.build/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [GSAP](https://greensock.com/gsap/) (GreenSock Animation Platform)
+- **Icons**: [Lucide Astro](https://lucide.dev/)
+- **Fonts**: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) & [Inter](https://fonts.google.com/specimen/Inter)
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Getting Started
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+### Prerequisites
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/FinnMidd/astro-photography.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Deployment
 
-## 👀 Want to learn more?
+This project is configured to deploy automatically to GitHub Pages via the `.github/workflows/deploy.yml` workflow when changes are pushed to the `main` branch.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Ensure the `site` and `base` properties in `astro.config.mjs` match your GitHub environment.
+
+---
+Developed as a practice project to explore the boundaries of modern web aesthetics and performance.
+
+## 📸 Image Disclaimer
+
+> **Important Note**: All photographs displayed in this template are curated from public sources (Unsplash) for demonstration purposes only. These images are **not** the work of the developer. This project is a technical showcase of web development skills and design implementation, using high-quality public assets to illustrate the potential of the layout.
