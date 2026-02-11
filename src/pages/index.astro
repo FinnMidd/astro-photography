@@ -4,62 +4,16 @@ import Navbar from "../components/Navbar.astro";
 import ImageCard from "../components/ImageCard.astro";
 import { ChevronDown, Instagram, Twitter, Mail } from "lucide-astro";
 
-const images = [
-	{
-		src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-		alt: "Mountain Landscape",
-		title: "Alpine Silence",
-		category: "Landscape",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop",
-		alt: "Silver Architecture",
-		title: "Geometric Flow",
-		category: "Architecture",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1544269437-11b780a9d7d5?q=80&w=987&auto=format&fit=crop",
-		alt: "Staircase",
-		title: "Infinite Ascent",
-		category: "Architecture",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop",
-		alt: "Forest Mist",
-		title: "Whispering Trees",
-		category: "Nature",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2232&auto=format&fit=crop",
-		alt: "Field",
-		title: "Golden Hour",
-		category: "Landscape",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-		alt: "Studio Portrait",
-		title: "Shadow & Soul",
-		category: "Portrait",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
-		alt: "Coastal Sunrise",
-		title: "Azure Horizon",
-		category: "Seascape",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964&auto=format&fit=crop",
-		alt: "Camera Detail",
-		title: "The Tool",
-		category: "Detail",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1605462858193-12b5e9c860f4?q=80&w=987&auto=format&fit=crop",
-		alt: "Mountain Peak",
-		title: "Summit Range",
-		category: "Landscape",
-	},
-];
+import { getCollection } from "astro:content";
+
+const photos = await getCollection("photos", ({ data }) => {
+	return import.meta.env.PROD ? data.status === "published" : true;
+});
+
+// Sort by publish date descending
+const sortedPhotos = photos.sort(
+	(a, b) => b.data.publish_date.getTime() - a.data.publish_date.getTime(),
+);
 ---
 
 <Layout>
@@ -147,7 +101,17 @@ const images = [
 					id="grid-container"
 					class="columns-1 md:columns-2 lg:columns-3 gap-6 md:gap-8"
 				>
-					{images.map((img) => <ImageCard {...img} />)}
+					{
+						sortedPhotos.map((photo) => (
+							<ImageCard
+								src={photo.data.src}
+								alt={photo.data.alt || photo.data.title}
+								title={photo.data.title}
+								category={photo.data.category}
+								slug={photo.id}
+							/>
+						))
+					}
 				</div>
 			</div>
 		</section>

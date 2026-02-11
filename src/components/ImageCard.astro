@@ -4,14 +4,16 @@ interface Props {
     alt: string;
     title: string;
     category: string;
+    slug: string;
     span?: string;
 }
 
-const { src, alt, title, category, span = "col-span-1" } = Astro.props;
+const { src, alt, title, category, slug, span = "col-span-1" } = Astro.props;
 ---
 
-<div
-    class={`reveal-image relative group overflow-hidden bg-accent break-inside-avoid mb-6 md:mb-8`}
+<a
+    href={`/astro-photography/photos/${slug}`}
+    class={`reveal-image relative group block overflow-hidden bg-accent break-inside-avoid mb-6 md:mb-8`}
 >
     <img
         src={src}
@@ -32,4 +34,4 @@ const { src, alt, title, category, span = "col-span-1" } = Astro.props;
             {title}
         </h3>
     </div>
-</div>
+</a>

@@ -1,5 +1,15 @@
 ---
 import "../styles/style.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Minimalist Photography | Portfolio",
+	description = "A modern, sleek photography portfolio showcasing minimalistic and clean visual stories.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -18,11 +28,8 @@ import "../styles/style.css";
 			rel="stylesheet"
 		/>
 
-		<title>Minimalist Photography | Portfolio</title>
-		<meta
-			name="description"
-			content="A modern, sleek photography portfolio showcasing minimalistic and clean visual stories."
-		/>
+		<title>{title}</title>
+		<meta name="description" content={description} />
 	</head>
 	<body class="selection:bg-primary selection:text-bg">
 		<slot />
