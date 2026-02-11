@@ -1,0 +1,145 @@
+---
+import { Instagram, Twitter, Mail } from "lucide-astro";
+---
+
+<footer id="contact" class="bg-primary text-bg py-24 px-8 md:px-16">
+    <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16"
+    >
+        <div class="max-w-md">
+            <h2 class="font-serif text-5xl mb-8">
+                Let's Create <br /> Something Beautiful
+            </h2>
+            <p class="text-bg/60 leading-relaxed mb-8">
+                Available for assignments worldwide and fine art print
+                inquiries.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-accent transition-colors"
+                    ><Instagram class="w-6 h-6" /></a
+                >
+                <a href="#" class="hover:text-accent transition-colors"
+                    ><Twitter class="w-6 h-6" /></a
+                >
+                <a href="#" class="hover:text-accent transition-colors"
+                    ><Mail class="w-6 h-6" /></a
+                >
+            </div>
+        </div>
+        <div
+            class="w-full md:w-auto grid grid-cols-2 md:grid-cols-1 gap-8 text-right"
+        >
+            <div>
+                <p class="text-xs uppercase tracking-widest text-bg/40 mb-2">
+                    Location
+                </p>
+                <p>Portland, Oregon</p>
+            </div>
+            <div>
+                <p class="text-xs uppercase tracking-widest text-bg/40 mb-2">
+                    Email
+                </p>
+                <p>hello@etherealens.com</p>
+            </div>
+            <div>
+                <p class="text-xs uppercase tracking-widest text-bg/40 mb-2">
+                    Follow
+                </p>
+                <p>@ethereal.lens</p>
+            </div>
+        </div>
+    </div>
+    <div
+        class="max-w-7xl mx-auto mt-24 pt-8 border-t border-bg/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs tracking-widest text-bg/40 uppercase"
+    >
+        <p>© 2026 Ethereal Lens Photography. All Rights Reserved.</p>
+        <div class="flex gap-8">
+            <a href="#" class="hover:text-bg transition-colors"
+                >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-bg transition-colors">Terms of Use</a>
+        </div>
+    </div>
+</footer>
+
+<!-- GSAP Animations Scripts -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial Load Animation
+    window.addEventListener("load", () => {
+        const tl = gsap.timeline();
+
+        if (document.querySelector("#hero-bg")) {
+            tl.to("#hero-bg", {
+                scale: 1,
+                opacity: 0.15,
+                duration: 2.5,
+                ease: "power2.out",
+            })
+                .to(
+                    "#hero-sub",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                    },
+                    "-=1.5",
+                )
+                .to(
+                    "#hero-title",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: "power3.out",
+                    },
+                    "-=0.8",
+                )
+                .to(
+                    "#hero-btn",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    },
+                    "-=0.6",
+                );
+        }
+    });
+
+    // Scroll Animations
+    gsap.utils.toArray(".reveal-image").forEach((img: any, i) => {
+        gsap.from(img, {
+            scrollTrigger: {
+                trigger: img,
+                start: "top bottom-=100",
+                toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            delay: (i % 3) * 0.1,
+            ease: "power3.out",
+        });
+    });
+
+    // Parallax effect for the about image
+    if (document.querySelector("#about img")) {
+        gsap.to("#about img", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+            y: -50,
+            ease: "none",
+        });
+    }
+</script>

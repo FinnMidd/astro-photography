@@ -1,38 +1,34 @@
 ---
 import "../styles/style.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 interface Props {
 	title?: string;
 	description?: string;
+	mainClass?: string;
 }
 
 const {
 	title = "Minimalist Photography | Portfolio",
 	description = "A modern, sleek photography portfolio showcasing minimalistic and clean visual stories.",
+	mainClass = "",
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-			rel="stylesheet"
-		/>
-
-		<title>{title}</title>
-		<meta name="description" content={description} />
+		<Header title={title} description={description} />
 	</head>
 	<body class="selection:bg-primary selection:text-bg">
-		<slot />
+		<Navbar />
+		<main class={mainClass}>
+			<slot />
+		</main>
+
+		<Footer />
 	</body>
 </html>
 

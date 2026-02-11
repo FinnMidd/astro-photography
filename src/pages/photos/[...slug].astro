@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar.astro";
 import { Camera, MapPin, Calendar, ArrowLeft, Info } from "lucide-astro";
 
 export async function getStaticPaths() {
@@ -17,178 +16,177 @@ const { Content } = await render(photo);
 const { data } = photo;
 ---
 
-<Layout title={`${data.title} - Ethereal Lens`}>
-    <Navbar />
+<Layout
+    title={`${data.title} - Ethereal Lens`}
+    mainClass="pt-32 pb-24 px-8 md:px-16 bg-white min-h-screen"
+>
+    <div class="max-w-7xl mx-auto">
+        <!-- Back Button -->
+        <a
+            href="/astro-photography/#gallery"
+            class="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors mb-12 group"
+        >
+            <ArrowLeft
+                class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+            />
+            Back to Gallery
+        </a>
 
-    <main class="pt-32 pb-24 px-8 md:px-16 bg-white min-h-screen">
-        <div class="max-w-7xl mx-auto">
-            <!-- Back Button -->
-            <a
-                href="/astro-photography/#gallery"
-                class="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors mb-12 group"
-            >
-                <ArrowLeft
-                    class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <!-- Image Section -->
+            <div class="relative group">
+                <div
+                    class="absolute -inset-4 border border-accent -z-10 opacity-50"
+                >
+                </div>
+                <img
+                    src={data.src}
+                    alt={data.alt || data.title}
+                    class="w-full h-auto object-cover shadow-2xl"
                 />
-                Back to Gallery
-            </a>
+            </div>
 
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
-                <!-- Image Section -->
-                <div class="relative group">
-                    <div
-                        class="absolute -inset-4 border border-accent -z-10 opacity-50"
+            <!-- Content Section -->
+            <div class="flex flex-col gap-12">
+                <div>
+                    <p
+                        class="text-xs uppercase tracking-[0.3em] text-accent mb-4"
                     >
-                    </div>
-                    <img
-                        src={data.src}
-                        alt={data.alt || data.title}
-                        class="w-full h-auto object-cover shadow-2xl"
-                    />
+                        {data.category}
+                    </p>
+                    <h1 class="font-serif text-5xl md:text-7xl mb-6">
+                        {data.title}
+                    </h1>
+                    {
+                        data.description && (
+                            <p class="text-xl text-secondary leading-relaxed font-light italic">
+                                "{data.description}"
+                            </p>
+                        )
+                    }
                 </div>
 
-                <!-- Content Section -->
-                <div class="flex flex-col gap-12">
-                    <div>
-                        <p
-                            class="text-xs uppercase tracking-[0.3em] text-accent mb-4"
-                        >
-                            {data.category}
-                        </p>
-                        <h1 class="font-serif text-5xl md:text-7xl mb-6">
-                            {data.title}
-                        </h1>
-                        {
-                            data.description && (
-                                <p class="text-xl text-secondary leading-relaxed font-light italic">
-                                    "{data.description}"
-                                </p>
-                            )
-                        }
-                    </div>
-
-                    <!-- Metadata Grid -->
-                    <div
-                        class="grid grid-cols-2 gap-8 py-8 border-y border-accent/20"
-                    >
-                        {
-                            data.location && (
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex items-center gap-2 text-secondary/50">
-                                        <MapPin class="w-4 h-4" />
-                                        <span class="text-[10px] uppercase tracking-widest">
-                                            Location
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">{data.location}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            data.date_taken && (
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex items-center gap-2 text-secondary/50">
-                                        <Calendar class="w-4 h-4" />
-                                        <span class="text-[10px] uppercase tracking-widest">
-                                            Date Taken
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">
-                                        {data.date_taken.toLocaleDateString(
-                                            "en-US",
-                                            {
-                                                year: "numeric",
-                                                month: "long",
-                                                day: "numeric",
-                                            },
-                                        )}
-                                    </p>
-                                </div>
-                            )
-                        }
-                        {
-                            data.camera && (
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex items-center gap-2 text-secondary/50">
-                                        <Camera class="w-4 h-4" />
-                                        <span class="text-[10px] uppercase tracking-widest">
-                                            Camera
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">{data.camera}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            data.lens && (
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex items-center gap-2 text-secondary/50">
-                                        <Info class="w-4 h-4" />
-                                        <span class="text-[10px] uppercase tracking-widest">
-                                            Lens
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">{data.lens}</p>
-                                </div>
-                            )
-                        }
-                    </div>
-
-                    <!-- Technical Settings -->
+                <!-- Metadata Grid -->
+                <div
+                    class="grid grid-cols-2 gap-8 py-8 border-y border-accent/20"
+                >
                     {
-                        data.settings && (
-                            <div class="bg-bg p-8 rounded-sm">
-                                <h3 class="text-xs uppercase tracking-widest mb-6 text-secondary/50">
-                                    Technical Settings
-                                </h3>
-                                <div class="grid grid-cols-4 gap-4">
-                                    <div class="text-center">
-                                        <p class="text-[10px] text-secondary/40 uppercase mb-1">
-                                            Aperture
-                                        </p>
-                                        <p class="font-medium">
-                                            {data.settings.f_stop}
-                                        </p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-[10px] text-secondary/40 uppercase mb-1">
-                                            Shutter
-                                        </p>
-                                        <p class="font-medium">
-                                            {data.settings.shutter_speed}
-                                        </p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-[10px] text-secondary/40 uppercase mb-1">
-                                            ISO
-                                        </p>
-                                        <p class="font-medium">
-                                            {data.settings.iso}
-                                        </p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-[10px] text-secondary/40 uppercase mb-1">
-                                            Focal
-                                        </p>
-                                        <p class="font-medium">
-                                            {data.settings.focal_length}
-                                        </p>
-                                    </div>
+                        data.location && (
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2 text-secondary/50">
+                                    <MapPin class="w-4 h-4" />
+                                    <span class="text-[10px] uppercase tracking-widest">
+                                        Location
+                                    </span>
                                 </div>
+                                <p class="text-sm">{data.location}</p>
                             </div>
                         )
                     }
+                    {
+                        data.date_taken && (
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2 text-secondary/50">
+                                    <Calendar class="w-4 h-4" />
+                                    <span class="text-[10px] uppercase tracking-widest">
+                                        Date Taken
+                                    </span>
+                                </div>
+                                <p class="text-sm">
+                                    {data.date_taken.toLocaleDateString(
+                                        "en-US",
+                                        {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </p>
+                            </div>
+                        )
+                    }
+                    {
+                        data.camera && (
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2 text-secondary/50">
+                                    <Camera class="w-4 h-4" />
+                                    <span class="text-[10px] uppercase tracking-widest">
+                                        Camera
+                                    </span>
+                                </div>
+                                <p class="text-sm">{data.camera}</p>
+                            </div>
+                        )
+                    }
+                    {
+                        data.lens && (
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2 text-secondary/50">
+                                    <Info class="w-4 h-4" />
+                                    <span class="text-[10px] uppercase tracking-widest">
+                                        Lens
+                                    </span>
+                                </div>
+                                <p class="text-sm">{data.lens}</p>
+                            </div>
+                        )
+                    }
+                </div>
 
-                    <!-- Blog Content -->
-                    <div
-                        class="prose prose-stone prose-lg max-w-none prose-headings:font-serif prose-headings:font-normal prose-p:leading-relaxed prose-p:text-secondary"
-                    >
-                        <Content />
-                    </div>
+                <!-- Technical Settings -->
+                {
+                    data.settings && (
+                        <div class="bg-bg p-8 rounded-sm">
+                            <h3 class="text-xs uppercase tracking-widest mb-6 text-secondary/50">
+                                Technical Settings
+                            </h3>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-[10px] text-secondary/40 uppercase mb-1">
+                                        Aperture
+                                    </p>
+                                    <p class="font-medium">
+                                        {data.settings.f_stop}
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-[10px] text-secondary/40 uppercase mb-1">
+                                        Shutter
+                                    </p>
+                                    <p class="font-medium">
+                                        {data.settings.shutter_speed}
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-[10px] text-secondary/40 uppercase mb-1">
+                                        ISO
+                                    </p>
+                                    <p class="font-medium">
+                                        {data.settings.iso}
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-[10px] text-secondary/40 uppercase mb-1">
+                                        Focal
+                                    </p>
+                                    <p class="font-medium">
+                                        {data.settings.focal_length}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+
+                <!-- Blog Content -->
+                <div
+                    class="prose prose-stone prose-lg max-w-none prose-headings:font-serif prose-headings:font-normal prose-p:leading-relaxed prose-p:text-secondary"
+                >
+                    <Content />
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </Layout>
 
 <style>
