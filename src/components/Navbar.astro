@@ -5,20 +5,20 @@ import { Camera } from "lucide-astro";
 <nav
     class="fixed top-0 left-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-accent/30 py-6 px-8 md:px-16 flex justify-between items-center"
 >
-    <a href="/" class="flex items-center gap-2 group">
+    <a href={import.meta.env.BASE_URL} class="flex items-center gap-2 group">
         <Camera
             class="w-6 h-6 text-primary group-hover:rotate-12 transition-transform duration-500"
         />
-        <span class="font-serif text-xl tracking-tight"
-            >Ethereal<span class="font-thin italic">Lens</span></span
-        >
+        <span class="font-serif text-xl tracking-tight">
+            Ethereal <span class="font-thin italic">Lens</span>
+        </span>
     </a>
 
     <div class="hidden md:flex items-center gap-12">
-        <a href="/" class="nav-link">Home</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href={import.meta.env.BASE_URL} class="nav-link">Home</a>
+        <a href={`${import.meta.env.BASE_URL}#gallery`} class="nav-link">Gallery</a>
+        <a href={`${import.meta.env.BASE_URL}#about`} class="nav-link">About</a>
+        <a href={`${import.meta.env.BASE_URL}#contact`} class="nav-link">Contact</a>
     </div>
 
     <div class="md:hidden">
